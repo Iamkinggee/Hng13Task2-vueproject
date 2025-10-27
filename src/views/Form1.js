@@ -1,4 +1,4 @@
-<template>
+{/* <template>
   <div class="relative h-screen">
     <!-- SVG Shape -->
     <div class="custom-shape-divider-bottom-1761434110">
@@ -120,43 +120,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ✅ POPUP (only after successful sign-up) -->
-    <transition name="popup">
-      <div
-        v-if="showPopup"
-        class="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-center z-50"
-      >
-        <div
-          class="bg-white rounded-2xl shadow-xl p-6 text-center w-80 animate-fadeScale"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="mx-auto text-green-600 mb-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            width="48"
-            height="48"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-          <h3 class="text-lg font-bold text-gray-800">Account Created!</h3>
-          <p class="text-sm text-gray-600 mt-1">Welcome, {{ form.email }} 🎉</p>
-          <button
-            @click="closePopup"
-            class="mt-4 w-full bg-green-600 hover:bg-green-500 text-white py-1.5 rounded transition-all"
-          >
-            Continue
-          </button>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -166,6 +129,7 @@ import { useRouter } from 'vue-router';
 import manage from '../assets/manage.png';
 
 const router = useRouter();
+
 const signin = ref(false);
 const data = ref([]);
 const form = reactive({ email: '', password: '' });
@@ -173,7 +137,6 @@ const message = ref('');
 const msgType = ref('');
 const shake = ref(false);
 const emailError = ref(false);
-const showPopup = ref(false);
 
 // Load stored users
 onMounted(() => {
@@ -188,51 +151,68 @@ const handleSubmit = (type) => {
 
   if (!emailRegex.test(userEmail)) {
     message.value =
-      "❌ Please enter a valid email address ending with '.com'";
+      "❌ Please enter a valid email address ending with '.com' (e.g. example@gmail.com)";
     msgType.value = 'error';
     emailError.value = true;
     shake.value = true;
     setTimeout(() => (shake.value = false), 400);
     return;
-  } else emailError.value = false;
+  } else {
+    emailError.value = false;
+  }
 
   if (userEmail && userPassword) {
-    const existing = JSON.parse(localStorage.getItem('user') || '[]');
-    const userExists = existing.find((u) => u.email === userEmail);
+    if (!localStorage.getItem('user')) {
+      // Create new user if none exist
+      localStorage.setItem(
+        'user',
+        JSON.stringify([{ email: userEmail, password: userPassword }])
+      );
+      message.value = '✅ Account created successfully!';
+      msgType.value = 'success';
+      localStorage.setItem('loggedInEmail', userEmail); // ✅ Store logged in user
+      router.push('/home');
+    } else {
+      for (let val of data.value) {
+        if (val.email === userEmail) {
+          if (type === 'signUp') {
+            message.value = '⚠️ User already exists!';
+            msgType.value = 'error';
+            signin.value = true;
+          } else {
+            if (val.password === userPassword) {
+              message.value = '✅ Login successful!';
+              msgType.value = 'success';
+              localStorage.setItem('loggedInEmail', userEmail); // ✅ Store logged in user
+              router.push('/home');
+            } else {
+              message.value = '❌ Password does not match!';
+              msgType.value = 'error';
+            }
+          }
+          return;
+        }
+      }
 
-    if (type === 'signUp') {
-      if (userExists) {
-        message.value = '⚠️ User already exists!';
-        msgType.value = 'error';
-        signin.value = true;
-      } else {
+      if (type === 'signUp') {
         localStorage.setItem(
           'user',
-          JSON.stringify([...existing, { email: userEmail, password: userPassword }])
+          JSON.stringify([
+            ...data.value,
+            { email: userEmail, password: userPassword },
+          ])
         );
         message.value = '✅ Account created successfully!';
         msgType.value = 'success';
-        localStorage.setItem('loggedInEmail', userEmail);
-        showPopup.value = true; // ✅ show popup instead of instant redirect
-      }
-    } else {
-      if (userExists && userExists.password === userPassword) {
-        message.value = '✅ Login successful!';
-        msgType.value = 'success';
-        localStorage.setItem('loggedInEmail', userEmail);
+        localStorage.setItem('loggedInEmail', userEmail); // ✅ Store logged in user
         router.push('/home');
       } else {
-        message.value = '❌ Invalid credentials!';
+        message.value = '⚠️ User does not exist!';
         msgType.value = 'error';
+        signin.value = false;
       }
     }
   }
-};
-
-// ✅ Close popup & navigate
-const closePopup = () => {
-  showPopup.value = false;
-  router.push('/home');
 };
 </script>
 
@@ -242,23 +222,7 @@ const closePopup = () => {
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
 }
-.animate-shake { animation: shake 0.3s; }
-
-@keyframes fadeScale {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+.animate-shake {
+  animation: shake 0.3s;
 }
-.animate-fadeScale {
-  animation: fadeScale 0.3s ease-out;
-}
-
-/* Vue transition */
-.popup-enter-active,
-.popup-leave-active {
-  transition: opacity 0.3s ease;
-}
-.popup-enter-from,
-.popup-leave-to {
-  opacity: 0;
-}
-</style>
+</style> */}

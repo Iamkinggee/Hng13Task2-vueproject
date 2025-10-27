@@ -20,11 +20,24 @@ const routes = [
     component: AddBook,
   },
   {
+    path: '/Form1',
+    name: 'Form1',
+    component: Form1,
+  },
+  {
     path: '/edit/:id',
     name: 'EditBook',
     component: EditBook,
     props: true,
   },
+
+//   {
+//   path: '/edit/:id',
+//   name: 'EditBook',
+//   component: () => import('../components/EditBook.vue'),
+// }
+
+
   {
     path: '/list',
     name: 'BooksList',
