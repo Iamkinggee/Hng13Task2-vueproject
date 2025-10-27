@@ -1,18 +1,23 @@
 <template>
-  <div>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Header -->
     <Header />
 
-    <div class="flex flex-wrap justify-center items-center">
-      <!-- Loop through books -->
-      <Book
-        v-for="book in props.books"
-        :key="book.id"
-        v-bind="book"
-        :handleRemoveBook="handleRemoveBook"
-      />
+    <!-- Book List Container -->
+    <div class="flex flex-wrap justify-center items-center mt-8">
+      <template v-if="books.length > 0">
+        <Book
+          v-for="book in books"
+          :key="book.id"
+          v-bind="book"
+          :handleRemoveBook="handleRemoveBook"
+        />
+      </template>
 
-      <!-- Show message if no books -->
-      <p v-if="!props.books || props.books.length === 0" class="text-[#0e1b1e] text-3xl font-bold pt-12 ml-2">
+      <p
+        v-else
+        class="text-[#0e1b1e] text-3xl font-bold pt-12 ml-2 text-center"
+      >
         No Tickets available. Please add some Tickets.
       </p>
     </div>
@@ -20,21 +25,26 @@
 </template>
 
 <script setup>
-import Book from './Book.vue';
+import { ref, onMounted } from 'vue';
 import Header from './Header.vue';
+import Book from './Book.vue';
 
-// ✅ Only one defineProps call
-const props = defineProps({
-  books: Array,
-  setBooks: Function
+// Reactive array for all books
+const books = ref([]);
+
+// Load books from localStorage when component mounts
+onMounted(() => {
+  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+  books.value = storedBooks;
 });
 
-// Function to remove a book
+// Function to delete a book
 const handleRemoveBook = (id) => {
-  props.setBooks(props.books.filter((book) => book.id !== id));
+  books.value = books.value.filter((book) => book.id !== id);
+  localStorage.setItem('books', JSON.stringify(books.value));
 };
 </script>
 
 <style scoped>
-/* optional scoped styling if needed */
+/* Optional additional styles */
 </style>

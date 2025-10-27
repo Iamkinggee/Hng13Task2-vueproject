@@ -30,22 +30,42 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Header from '../components/Header.vue';
 import Stat from '../components/Stat.vue';
 
 const route = useRoute();
 const router = useRouter();
+const userEmail = ref('Guest');
 
-// Grab email from route state (passed from login)
-const userEmail = route?.state || 'Guest';
+onMounted(() => {
+  // 1️⃣ First check if route.state contains an email (from navigation)
+  const emailFromRoute = route?.state;
+
+  // 2️⃣ Then check if user data is in localStorage
+  const storedUsers = JSON.parse(localStorage.getItem('user')) || [];
+
+  // 3️⃣ If emailFromRoute exists, use it and persist it
+  if (emailFromRoute) {
+    userEmail.value = emailFromRoute;
+    localStorage.setItem('loggedInEmail', emailFromRoute);
+  } 
+  // 4️⃣ Else, fallback to stored loggedInEmail
+  else if (localStorage.getItem('loggedInEmail')) {
+    userEmail.value = localStorage.getItem('loggedInEmail');
+  }
+  // 5️⃣ Finally, fallback to the first stored user's email
+  else if (storedUsers.length > 0) {
+    userEmail.value = storedUsers[0].email;
+  }
+});
 
 // Logout function
 const logout = () => {
-  router.push('/Form1'); // Redirect to login/signup page
+  localStorage.removeItem('loggedInEmail');
+  router.push('/Form1');
 };
 </script>
 
-<style scoped>
-/* Add any custom styles if needed */
-</style>
+<style scoped></style>

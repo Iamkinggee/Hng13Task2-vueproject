@@ -5,23 +5,24 @@
       class="bg-white rounded-lg shadow-md p-4 w-60 m-1 flex flex-col items-center"
       style="box-shadow: 0 2px 10px -3px rgba(6,81,237,0.3);"
     >
-      <h3 class="book-title font-bold text-lg mb-2">{{ props.bookname }}</h3>
+      <h3 class="book-title font-bold text-lg mb-2">{{ bookname }}</h3>
+
       <div class="book-details text-sm text-gray-700 mb-3">
-        <div>Package: {{ props.author }}</div>
-        <div>Quantity: {{ props.quantity }}</div>
-        <div>Price: {{ props.price }}</div>
+        <div>Package: {{ author }}</div>
+        <div>Quantity: {{ quantity }}</div>
+        <div>Price: {{ price }}</div>
         <div>Date: {{ formattedDate }}</div>
       </div>
 
       <div class="flex gap-2">
         <button
-          class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+          class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-all"
           @click="navigateToEdit"
         >
           Edit
         </button>
         <button
-          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-all"
           @click="open = true"
         >
           Delete
@@ -41,7 +42,7 @@
       >
         <!-- Close button -->
         <button
-          class="absolute top-2 right-2 p-1 rounded-lg text-gray-400 hover:bg-gray-50 hover:text-gray-600"
+          class="absolute top-2 right-2 p-1 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600"
           @click="open = false"
         >
           ✕
@@ -68,14 +69,20 @@
 
           <h3 class="text-lg font-bold text-gray-800">Confirm Delete</h3>
           <p class="text-sm text-gray-500 mt-1 mb-4">
-            Are you sure you want to delete <b>{{ props.bookname }}</b>?
+            Are you sure you want to delete <b>{{ bookname }}</b>?
           </p>
 
           <div class="flex gap-3">
-            <button class="bg-red-500 text-white w-full py-1 rounded" @click="confirmDelete">
+            <button
+              class="bg-red-500 text-white w-full py-1 rounded hover:bg-red-600 transition-all"
+              @click="confirmDelete"
+            >
               Delete
             </button>
-            <button class="bg-gray-200 w-full py-1 rounded" @click="open = false">
+            <button
+              class="bg-gray-200 w-full py-1 rounded hover:bg-gray-300 transition-all"
+              @click="open = false"
+            >
               Cancel
             </button>
           </div>
@@ -86,10 +93,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
-// ✅ Single defineProps call with all props
 const props = defineProps({
   id: [String, Number],
   bookname: String,
@@ -97,34 +103,41 @@ const props = defineProps({
   price: [String, Number],
   quantity: [String, Number],
   date: String,
-  handleRemoveBook: Function,
-});
+  handleRemoveBook: Function
+})
 
-const router = useRouter();
-const open = ref(false);
+const router = useRouter()
+const open = ref(false)
 
 // Navigate to Edit page
 const navigateToEdit = () => {
-  router.push(`/edit/${props.id}`);
-};
+  router.push(`/edit/${props.id}`)
+}
+
+
+
+
+
 
 // Confirm deletion
 const confirmDelete = () => {
-  props.handleRemoveBook(props.id);
-  open.value = false;
-};
+  if (typeof props.handleRemoveBook === 'function') {
+    props.handleRemoveBook(props.id)
+  }
+  open.value = false
+}
 
-// Format date
+// Format date nicely
 const formattedDate = computed(() => {
-  return new Date(props.date).toDateString();
-});
+  if (!props.date) return ''
+  return new Date(props.date).toDateString()
+})
 </script>
 
 <style scoped>
 .book-title {
   font-weight: 600;
 }
-
 .book-details > div {
   margin-bottom: 0.25rem;
 }

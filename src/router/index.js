@@ -9,12 +9,32 @@ import EditBook from '../components/EditBook.vue';
 
 
 const routes = [
-  { path: '/', component: Hero },
-  { path: '/form1', component: Form1 },
-  { path: '/home', component: Home },
-  { path: '/list', component: BooksList },
-  { path: '/add', component: AddBook },
-  { path: '/edit/:id', component: EditBook },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/add',
+    name: 'AddBook',
+    component: AddBook,
+  },
+  {
+    path: '/edit/:id',
+    name: 'EditBook',
+    component: EditBook,
+    props: true,
+  },
+  {
+    path: '/list',
+    name: 'BooksList',
+    component: BooksList,
+  },
+  // Optional: catch-all for undefined routes
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
 ];
 
 const router = createRouter({

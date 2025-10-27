@@ -1,25 +1,23 @@
-<script setup>
-import { useRouter } from 'vue-router'; // ✅
-import BookForm from './BookForm.vue';
-import Header from './Header.vue';
+<template>
+  <div>
+    <Header />
+    <BookForm @handleOnSubmit="handleOnSubmit" />
+  </div>
+</template>
 
-// ✅ Single defineProps() call
-defineProps({
-  books: Array,
-  setBooks: Function
-});
+<script setup>
+import { useRouter } from 'vue-router';
+import Header from './Header.vue';
+import BookForm from './BookForm.vue';
 
 const router = useRouter();
 
-// Function to handle submission
+// Save book to localStorage and navigate
 const handleOnSubmit = (book) => {
-  // @ts-ignore
-  props.setBooks([book, ...props.books]);
+  const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+  const updatedBooks = [book, ...storedBooks];
+  localStorage.setItem('books', JSON.stringify(updatedBooks));
+
   router.push('/list');
 };
 </script>
-
-<template>
-  <Header />
-  <BookForm @handleOnSubmit="handleOnSubmit" />
-</template>

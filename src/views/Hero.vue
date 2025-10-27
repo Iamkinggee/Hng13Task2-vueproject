@@ -8,7 +8,7 @@
 
     <div class="flex flex-col md:flex-row h-[400px] justify-center items-center gap-20 p-4">
       <div class="flex-1 px-10">
-        <h1 class="font-mono text-black mb-6">KingsTickets</h1>
+        <h1 class="font-mono text-black text-3xl font-bold mb-6">KingsTickets</h1>
         <p class="text-[20px] text-black mt-6">
           Manage, track and resolve tickets effortlessly with our intuitive CRUD-based ticket management system.
         </p>
@@ -23,8 +23,8 @@
         </div>
       </div>
 
-      <div class="flex-1 bg-green-600 rounded-[100%] p-8 flex items-center justify-center">
-        <img src="../assets/manage.png" alt="Illustration" class="w-full aspect-[15/15] object-contain"/>
+      <div class="flex-1  rounded-[100%] pt-[160px] p-8 flex items-center justify-center ">
+        <img src="../assets/manage.png" alt="Illustration" class="bg-green-600 rounded-[100%] p- aspect-[15/15] object-contain"/>
       </div>
     </div>
   </div>
