@@ -6,25 +6,51 @@
       </svg>
     </div>
 
-    <div class="flex flex-col md:flex-row h-[400px] justify-center items-center gap-20 p-4">
-      <div class="flex-1 px-10">
-        <h1 class="font-mono text-black text-3xl font-bold mb-6">KingsTickets</h1>
+
+
+
+
+    <div className="flex flex-col p gap-20 md:flex-row h-[400px] md:pt-2.5 pt-10 justify-center items-center mt-20 mx-20 ">
+      <div className="flex-1 pt-10  items-center justify-center  px-10 h-[450px] mt-[250px]  md:mt-0 ">
+        <h1 className='font-mono  text-black mb-4 md:text-[50px] font-bold  text-2xl'>KingsTickets</h1>
         <p class="text-[20px] text-black mt-6">
           Manage, track and resolve tickets effortlessly with our intuitive CRUD-based ticket management system.
         </p>
 
         <div class="flex flex-col md:flex-row gap-5 mt-6">
           <router-link to="/Form1">
-            <button class="w-[250px] h-[60px] rounded bg-green-600 text-white font-bold">Login</button>
+            <button className='w-[250px] h-[60px] rounded  text-xl  border-2 border-green-600 bg-green-600 font-semibold text-white '>Login</button>
           </router-link>
           <router-link to="/Form1">
-            <button class="w-[250px] h-[60px] rounded text-black font-bold border-2 border-green-600">Get started</button>
+            <button className='w-[250px] h-[60px] rounded text-xl  text-black font-semibold  border-2 border-green-600 text'>Get started</button>
           </router-link>
         </div>
       </div>
 
-      <div class="flex-1  rounded-[100%] pt-[160px] p-8 flex items-center justify-center ">
-        <img src="../assets/manage.png" alt="Illustration" class="bg-green-600 rounded-[100%] p- aspect-[15/15] object-contain"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div className='bg-green-600 flex-1 items-center rounded-[100%] '>
+        <div className='w-full aspect-[15/15] object-contain pt-'>
+
+
+        <img src="../assets/manage.png" alt="Illustration"    className="w-full aspect-[15/15] object-contain"/>
+      </div>
       </div>
     </div>
   </div>

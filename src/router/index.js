@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: Hero,
   },
 
   {
@@ -20,11 +20,25 @@ const routes = [
     name: 'AddBook',
     component: AddBook,
   },
+
+  
+  // {
+  //   path: '/hero',
+  //   name: 'Hero',
+  //   component: Hero,
+  // },
+
+
+
   {
-    path: '/hero',
-    name: 'Hero',
-    component: Hero,
+    path: '/home',
+    name: 'home',
+    component: Home,
   },
+
+
+
+
   {
     path: '/Form1',
     name: 'Form1',
