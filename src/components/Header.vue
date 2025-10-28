@@ -1,20 +1,54 @@
 <template>
-  <header class="text-center my-2">
+  <div class="text-center my-4">
+    <div
+      class="
+        uppercase 
+        text-xl 
+        mb-5 
+        flex 
+        flex-col 
+        items-center 
+        space-y-2 
+        md:flex-row 
+        md:justify-center 
+        md:space-x-6 
+        md:space-y-0
+      "
+    >
+      <RouterLink
+        to="/home"
+        :class="linkClass('/home')"
+      >
+        Home
+      </RouterLink>
 
-    <router-link to="/home">
-      <h1 class="inline-block p-5 text-black text-4xl font-old font-mono">KingsTickets</h1>
-    </router-link>
-    <hr class="my-2 border-gray-600" />
-    <div class="uppercase text-center text-xl mb- p-5">
-    
-      <router-link to="/home" class="px-3 py-1 mx-4 font-bold hover:border-white">Home</router-link>
-    
-      <router-link to="/list" class="px-3 py-1 mx-4 font-bold hover:border-white">Ticket List</router-link>
+      <RouterLink
+        to="/list"
+        :class="linkClass('/list')"
+      >
+        Ticket List
+      </RouterLink>
 
-      <router-link to="/add" class="px-3 py-1 mx-4 font-bold text-black hover:border-white">Add TICKET</router-link>
+      <RouterLink
+        to="/add"
+        :class="linkClass('/add')"
+      >
+        Add Ticket
+      </RouterLink>
     </div>
-
-  </header>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute, RouterLink } from 'vue-router';
+
+const route = useRoute();
+
+// Function to apply active styles
+const linkClass = (path) => {
+  const base = 'px-3 py-1 font-bold transition-all duration-300 no-underline hover:no-underline';
+  return route.path === path
+    ? `${base} text-black border-b-2 border-green-600`
+    : `${base} text-gray-700 hover:text-green-600`;
+};
+</script>

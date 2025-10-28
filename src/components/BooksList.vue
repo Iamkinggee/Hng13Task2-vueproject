@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <Header />
+    <Nav />
 
     <!-- Book List Container -->
     <div class="flex flex-wrap justify-center items-center mt-8">
@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import Header from './Header.vue';
+import Nav from './Nav.vue';
 import Book from './Book.vue';
 
 // Reactive array for all books

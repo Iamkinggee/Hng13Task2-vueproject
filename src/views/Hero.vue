@@ -14,10 +14,10 @@
         </p>
 
         <div class="flex flex-col md:flex-row gap-5 mt-6">
-          <router-link to="/form1">
+          <router-link to="/Form1">
             <button class="w-[250px] h-[60px] rounded bg-green-600 text-white font-bold">Login</button>
           </router-link>
-          <router-link to="/form1">
+          <router-link to="/Form1">
             <button class="w-[250px] h-[60px] rounded text-black font-bold border-2 border-green-600">Get started</button>
           </router-link>
         </div>

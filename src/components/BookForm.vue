@@ -4,23 +4,23 @@
   
 
       <div class="mb-4">
-        <label class="block text-gray-700"> Name</label>
-        <input v-model="book.bookname" type="text" class="border rounded w-full p-2" placeholder="Enter name" required />
+        <label class="block text-gray-700 font-semibold text-xl p-2"> Name</label>
+        <input v-model="book.bookname" type="text"  className="block w-full border border-gray-300 text-gray-600 bg-white h-12 text-lg rounded-none mb-6 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-300"required placeholder="Enter Name" />
       </div>
 
       <div class="mb-4">
-        <label class="block text-gray-700">Package: vip or regular</label>
-        <input v-model="book.author" type="text" class="border rounded w-full p-2" required placeholder=" Enter Package" />
+        <label class="block text-gray-700 font-semibold text-xl p-2">Package: vip or regular</label>
+        <input v-model="book.author" type="text"  className="block w-full border border-gray-300 text-gray-600 bg-white h-12 text-lg rounded-none mb-6 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-300" required placeholder=" Enter Package" />
       </div>
 
       <div class="mb-4">
-        <label class="block text-gray-700">Quantity</label>
-        <input v-model="book.quantity" type="number" class="border rounded w-full p-2" required placeholder="Enter Quantity" />
+        <label class="block text-gray-700 font-semibold text-xl p-2">Quantity</label>
+        <input v-model="book.quantity" type="number"   className="block w-full border border-gray-300 text-gray-600 bg-white h-12 text-lg rounded-none mb-6 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-300" required placeholder="Enter Quantity" />
       </div>
 
       <div class="mb-4">
-        <label class="block text-gray-700">Price</label>
-        <input v-model="book.price" type="number" class="border rounded w-full p-2" required placeholder="Enter Price ($)"/>
+        <label class="block text-gray-700 font-semibold text-xl p-2">Price</label>
+        <input v-model="book.price" type="number"   className="block w-full border border-gray-300 text-gray-600 bg-white h-12 text-lg rounded-none mb-6 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-300" required placeholder="Enter Price ($)"/>
       </div>
 
       <button

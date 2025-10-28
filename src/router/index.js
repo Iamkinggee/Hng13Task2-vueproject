@@ -14,10 +14,16 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+
   {
     path: '/add',
     name: 'AddBook',
     component: AddBook,
+  },
+  {
+    path: '/hero',
+    name: 'Hero',
+    component: Hero,
   },
   {
     path: '/Form1',
@@ -30,13 +36,6 @@ const routes = [
     component: EditBook,
     props: true,
   },
-
-//   {
-//   path: '/edit/:id',
-//   name: 'EditBook',
-//   component: () => import('../components/EditBook.vue'),
-// }
-
 
   {
     path: '/list',

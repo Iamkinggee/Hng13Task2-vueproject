@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Header />
+    <Nav/>
+    
     <BookForm @handleOnSubmit="handleOnSubmit" />
   </div>
 </template>
@@ -8,6 +9,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import Header from './Header.vue';
+import Nav from './Nav.vue';
 import BookForm from './BookForm.vue';
 
 const router = useRouter();

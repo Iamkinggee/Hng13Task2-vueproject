@@ -5,24 +5,24 @@
       class="bg-white rounded-lg shadow-md p-4 w-60 m-1 flex flex-col items-center"
       style="box-shadow: 0 2px 10px -3px rgba(6,81,237,0.3);"
     >
-      <h3 class="book-title font-bold text-lg mb-2">{{ bookname }}</h3>
+      <h3 className="font-bold text-2xl font-mono py-5 ">{{ bookname }}</h3>
 
       <div class="book-details text-sm text-gray-700 mb-3">
-        <div>Package: {{ author }}</div>
-        <div>Quantity: {{ quantity }}</div>
-        <div>Price: {{ price }}</div>
+         <div>Package: <span className="text-xl font-mono">{{author}}</span></div>
+         <div>Quantity: <span className="text-xl font-mono">{{quantity}}</span></div>
+         <div>Price: <span className="text-xl font-mono">{{price}}</span></div>
         <div>Date: {{ formattedDate }}</div>
       </div>
 
       <div class="flex gap-2">
         <button
-          class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-all"
+          class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-all font-semibold"
           @click="navigateToEdit"
         >
           Edit
         </button>
         <button
-          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-all"
+          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-all font-semibold"
           @click="open = true"
         >
           Delete

@@ -1,6 +1,6 @@
 <template>
   <div className="pt-12">
-
+ <Nav/>
 
     
 
@@ -21,7 +21,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Header from './Header.vue';
+import Nav from './Nav.vue';
 import BookForm from './BookForm.vue';
 
 const route = useRoute();
